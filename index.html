@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+    <link href="style.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap"
+      rel="stylesheet"
+    />
+    <title>FIND THE UFO!</title>
+  </head>
+  <body>
+    <div id="startScreen" class="startScreen" style="display: block">
+      <div class="center">
+        <div id="description">
+          <button id="descriptionButton" class="buttons">
+            Mission Brief
+            <img src="./img/missionbrief.png" height="100" width="100" />
+          </button>
+          <button id="instructionButton" class="buttons">
+            Game Manual <img src="./img/gears.png" height="100" width="100" />
+          </button>
+        </div>
+      </div>
+      <div>
+        <button id="startButton" class="buttons">
+          Start Game <img src="./img/startgame.png" height="100" width="100" />
+        </button>
+      </div>
+    </div>
+    <div id="canvas" style="display: none">
+      <div id="playerInfo">
+        <h1 id="highscore">Highscore</h1>
+      </div>
+      <canvas id="canvas1"></canvas>
+    </div>
+    <script src="index.js" charset="utf-8"></script>
+    <script src="indexDescription.js" charset="utf-8"></script>
+  </body>
+  <style></style>
+</html>

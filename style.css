@@ -1,0 +1,126 @@
+/* #canvas {
+  align-items: center;
+  justify-content: center;
+} */
+
+#canvas1 {
+  border: 10px solid;
+  border-color: deeppink;
+  border-radius: 30px;
+  display: flex;
+  margin: auto;
+}
+
+body {
+  background-color: wheat;
+  height: 100vh;
+  width: 100vw;
+}
+
+#highscore {
+  background-color: transparent;
+  margin: 20px auto;
+  text-align: center;
+  font-family: "DotGothic16", sans-serif;
+  font-size: 20px;
+  text-align: center;
+  justify-content: center;
+}
+
+#startScreen {
+  /* position: absolute; */
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60%;
+}
+
+/* #buttonsRow {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+#description {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#descriptionButton {
+  margin: auto 100px;
+  border: 5px solid;
+  cursor: crosshair;
+  padding: 12px 48px 12px 48px;
+  font-family: "DotGothic16", sans-serif;
+  font-size: 50px;
+  border-radius: 20px;
+}
+
+#clickedDescription {
+  margin: auto 100px;
+  border: 5px solid;
+  padding: 12px 20px 12px 20px;
+  font-family: "DotGothic16", sans-serif;
+  font-size: 20px;
+  border-radius: 20px;
+  background-color: #4caf50;
+  color: white;
+  border-color: white;
+}
+
+#instructionButton {
+  margin: auto 100px;
+  border: 5px solid;
+  cursor: crosshair;
+  padding: 12px 48px 12px 48px;
+  font-family: "DotGothic16", sans-serif;
+  font-size: 50px;
+  border-radius: 20px;
+}
+
+#clickedInstructionButton {
+  margin: auto 100px;
+  border: 5px solid;
+  border-color: black;
+  cursor: crosshair;
+  padding: 12px 20px 12px 20px;
+  font-family: "DotGothic16", sans-serif;
+  font-size: 20px;
+  border-radius: 20px;
+  background-color: #4caf50;
+  color: white;
+  border-color: white;
+}
+
+#startButton {
+  border: 5px solid;
+  display: flex;
+  margin: auto;
+  cursor: pointer;
+  padding: 12px 48px 12px 48px;
+  font-family: "DotGothic16", sans-serif;
+  font-size: 50px;
+  border-radius: 20px;
+  width: 1000px;
+  text-align: center;
+  justify-content: center;
+}
+
+.buttons {
+  transition-duration: 0.4s;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.buttons:hover {
+  background-color: #4caf50;
+  color: white;
+}
