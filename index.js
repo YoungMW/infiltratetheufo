@@ -6,6 +6,7 @@ canvas.width = 700;
 canvas.height = 700;
 
 const gravity = 0.5; //creating "gravity" acceleration
+let playerNameUpperCase = "";
 
 //==========================================================
 //===================PLAYER CREATION========================
@@ -265,15 +266,8 @@ let platforms = [
   new Platform({ x: 450, y: -2450, image: platformImage3 }),
   new Platform({ x: 550, y: -2600, image: platformImage3 }),
   new Platform({ x: 650, y: -2750, image: platformImage3 }),
-  new Platform({ x: 450, y: -2900, image: platformImage2 }),
-  new Platform({ x: 350, y: -3050, image: platformImage2 }),
-  new Platform({ x: 250, y: -3200, image: platformImage2 }),
   new Platform({ x: 150, y: -3350, image: platformImage2 }),
-  new Platform({ x: 250, y: -3500, image: platformImage2 }),
   new Platform({ x: 350, y: -3650, image: platformImage2 }),
-  new Platform({ x: 450, y: -3800, image: platformImage2 }),
-  new Platform({ x: 550, y: -3950, image: platformImage2 }),
-  new Platform({ x: 450, y: -4100, image: platformImage2 }),
   new Platform({ x: 420, y: -4250, image: platformImage3 }),
   new Platform({ x: 140, y: -4400, image: platformImage3 }),
   new Platform({ x: -140, y: -4550, image: platformImage3 }),
@@ -319,21 +313,16 @@ let boulderObject = [
 //==========Implement the MovingPlatform class==============
 //==========================================================
 let movingPlatform = [
-  new MovingPlatform({
-    x: 500,
-    y: 150,
-    image: movingPlatformImage,
-  }),
-  new MovingPlatform({
-    x: 500,
-    y: -550,
-    image: movingPlatformImage,
-  }),
-  new MovingPlatform({
-    x: 500,
-    y: -2350,
-    image: platformImage2,
-  }),
+  new MovingPlatform({ x: 500, y: 150, image: movingPlatformImage }),
+  new MovingPlatform({ x: 500, y: -550, image: movingPlatformImage }),
+  new MovingPlatform({ x: 500, y: -2350, image: platformImage2 }),
+  new MovingPlatform({ x: 450, y: -2900, image: platformImage2 }),
+  new MovingPlatform({ x: 350, y: -3050, image: platformImage2 }),
+  new MovingPlatform({ x: 250, y: -3200, image: platformImage2 }),
+  new MovingPlatform({ x: 50, y: -3500, image: platformImage2 }),
+  new MovingPlatform({ x: 150, y: -3800, image: platformImage2 }),
+  new MovingPlatform({ x: 550, y: -3950, image: platformImage2 }),
+  new MovingPlatform({ x: 350, y: -4100, image: platformImage2 }),
 ];
 
 //==========================================================
@@ -404,36 +393,24 @@ function restartGame() {
     new Platform({ x: 450, y: -2450, image: platformImage3 }),
     new Platform({ x: 550, y: -2600, image: platformImage3 }),
     new Platform({ x: 650, y: -2750, image: platformImage3 }),
-    new Platform({ x: 450, y: -2900, image: platformImage2 }),
-    new Platform({ x: 350, y: -3050, image: platformImage2 }),
-    new Platform({ x: 250, y: -3200, image: platformImage2 }),
     new Platform({ x: 150, y: -3350, image: platformImage2 }),
-    new Platform({ x: 250, y: -3500, image: platformImage2 }),
     new Platform({ x: 350, y: -3650, image: platformImage2 }),
-    new Platform({ x: 450, y: -3800, image: platformImage2 }),
-    new Platform({ x: 550, y: -3950, image: platformImage2 }),
-    new Platform({ x: 450, y: -4100, image: platformImage2 }),
     new Platform({ x: 420, y: -4250, image: platformImage3 }),
     new Platform({ x: 140, y: -4400, image: platformImage3 }),
     new Platform({ x: -140, y: -4550, image: platformImage3 }),
   ]; //creation of an array of platforms
 
   movingPlatform = [
-    new MovingPlatform({
-      x: 500,
-      y: 150,
-      image: movingPlatformImage,
-    }),
-    new MovingPlatform({
-      x: 500,
-      y: -550,
-      image: movingPlatformImage,
-    }),
-    new MovingPlatform({
-      x: 500,
-      y: -2350,
-      image: platformImage2,
-    }),
+    new MovingPlatform({ x: 500, y: 150, image: movingPlatformImage }),
+    new MovingPlatform({ x: 500, y: -550, image: movingPlatformImage }),
+    new MovingPlatform({ x: 500, y: -2350, image: platformImage2 }),
+    new MovingPlatform({ x: 450, y: -2900, image: platformImage2 }),
+    new MovingPlatform({ x: 350, y: -3050, image: platformImage2 }),
+    new MovingPlatform({ x: 250, y: -3200, image: platformImage2 }),
+    new MovingPlatform({ x: 50, y: -3500, image: platformImage2 }),
+    new MovingPlatform({ x: 150, y: -3800, image: platformImage2 }),
+    new MovingPlatform({ x: 550, y: -3950, image: platformImage2 }),
+    new MovingPlatform({ x: 350, y: -4100, image: platformImage2 }),
   ];
 
   decorativeObjects = [
@@ -523,6 +500,7 @@ function animate() {
   c.fillRect(0, 0, canvas.width, canvas.height); //function to clear canvas
   //Updating/call the platform's draw function (style and fill)
 
+  //====================MOVING PLATFORMS======================
   movingPlatform.forEach((movingPlatform) => {
     if (
       movingPlatform.movingPlatformValue === false &&
@@ -540,6 +518,7 @@ function animate() {
     }
   });
 
+  //====================DRAWING OBJECTS======================
   decorativeObjects.forEach((decorativeObject) => {
     decorativeObject.draw();
   });
@@ -631,10 +610,10 @@ function animate() {
   //======================WIN  DETECTION
   if (scrollOffsetY >= 4750) {
     console.log("You win!");
-    window.confirm(`You Escaped! You Win! Your score is ${scrollOffsetY}!`);
     keys.up.pressed = false;
     keys.left.pressed = false;
     keys.right.pressed = false;
+    updateGameInfoBoxWin();
     scrollOffsetY = 0;
     restartGame();
   }
@@ -648,10 +627,10 @@ function animate() {
 
   //LOSE SCENARIO
   if (player.position.y + player.height * 0.3 > canvas.height) {
-    window.confirm(`You died! Your score is ${scrollOffsetY}!`);
     keys.up.pressed = false;
     keys.left.pressed = false;
     keys.right.pressed = false;
+    updateGameInfoBoxDeath();
     restartGame();
   }
 
@@ -662,10 +641,10 @@ function animate() {
       player.position.y + player.height >= boulder.position.y &&
       player.position.y <= boulder.position.y + boulder.height
     ) {
-      window.confirm(`You died! Your score is ${scrollOffsetY}!`);
       keys.up.pressed = false;
       keys.left.pressed = false;
       keys.right.pressed = false;
+      updateGameInfoBoxDeath();
       restartGame();
     }
   });
@@ -674,7 +653,14 @@ function animate() {
 //==========================================================
 //=======================START GAME=========================
 //==========================================================
+const inputName = () => {
+  playerName = window.prompt("Enter your hero's name: ");
+  playerNameUpperCase = playerName.toUpperCase();
+  return playerNameUpperCase;
+};
+
 document.getElementById("startButton").addEventListener("click", startGame);
+document.getElementById("startButton").addEventListener("click", inputName);
 
 function startGame() {
   animate();
@@ -685,6 +671,22 @@ function toggleScreen(id, toggle) {
   let display = toggle ? "block" : "none"; //true = display: block, false = display: none
   element.style.display = display;
 }
+
+//==========================================================
+//=========================END GAME=========================
+//==========================================================
+const backToMenu = () => {
+  window.location.reload();
+};
+document.getElementById("back").addEventListener("click", backToMenu);
+
+const inputNewName = () => {
+  playerName = window.prompt("We have a new hero! Enter your name: ");
+  playerNameUpperCase = playerName.toUpperCase();
+  restartGame();
+  return playerNameUpperCase;
+};
+changePlayer.addEventListener("click", inputNewName);
 
 //==========================================================
 //===========EVENT LISTENER - PLAYER MOVEMENTS==============

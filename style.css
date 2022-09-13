@@ -5,26 +5,19 @@
 
 #canvas1 {
   border: 10px solid;
-  border-color: deeppink;
+  border-color: black;
   border-radius: 30px;
   display: flex;
   margin: auto;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  /* margin-left: 10px; */
 }
 
 body {
   background-color: wheat;
   height: 100vh;
   width: 100vw;
-}
-
-#highscore {
-  background-color: transparent;
-  margin: 20px auto;
-  text-align: center;
-  font-family: "DotGothic16", sans-serif;
-  font-size: 20px;
-  text-align: center;
-  justify-content: center;
 }
 
 #startScreen {
@@ -40,13 +33,6 @@ body {
   align-items: center;
   height: 60%;
 }
-
-/* #buttonsRow {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
 
 #description {
   display: flex;
@@ -123,4 +109,122 @@ body {
 .buttons:hover {
   background-color: #4caf50;
   color: white;
+}
+
+#playerInfo {
+  display: flex;
+  margin: 20px auto;
+  justify-content: center;
+  align-items: center;
+}
+
+#resetButtons {
+  display: flex;
+  margin: auto;
+  margin-bottom: 50px;
+  justify-content: center;
+  align-items: center;
+}
+
+#changePlayer {
+  border: 5px solid;
+  margin-left: 25px;
+  font-family: "DotGothic16", sans-serif;
+  font-size: 20px;
+  border-radius: 20px;
+  width: 175px;
+  padding: 12px 20px 12px 20px;
+  text-align: center;
+  justify-content: center;
+  /* background-color: white; */
+}
+
+#back {
+  border: 5px solid;
+  margin-right: 25px;
+  font-family: "DotGothic16", sans-serif;
+  font-size: 20px;
+  border-radius: 20px;
+  width: 175px;
+  padding: 12px 20px 12px 20px;
+  text-align: center;
+  justify-content: center;
+  /* background-color: white; */
+}
+
+#highscore {
+  background-color: transparent;
+  margin: auto;
+  text-align: center;
+  font-family: "DotGothic16", sans-serif;
+  font-size: 40px;
+  text-align: center;
+  justify-content: center;
+}
+
+#mainGameComponents {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+#gameInfoColumn {
+  /* display: flex; */
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 80px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0px;
+}
+
+#gameInfo {
+  border: 5px solid;
+  margin: auto;
+  font-family: "DotGothic16", sans-serif;
+  font-size: 20px;
+  border-radius: 20px;
+  width: 400px;
+  padding: 12px 20px 12px 20px;
+  text-align: center;
+  justify-content: center;
+  background-color: white;
+}
+
+#highscoreTable {
+  border: 5px solid;
+  margin-top: 50px;
+  font-family: "DotGothic16", sans-serif;
+  font-size: 20px;
+  border-radius: 20px;
+  width: 400px;
+  padding: 12px 20px 12px 20px;
+  text-align: center;
+  justify-content: center;
+  background-color: white;
+}
+
+#highscoreTableHeader {
+  font-family: "DotGothic16", sans-serif;
+  font-size: 30px;
+  margin-bottom: 0px;
+  text-align: center;
+  justify-content: center;
+}
+
+#highscoreTableSubHeader {
+  font-family: "DotGothic16", sans-serif;
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+  justify-content: center;
+  color: red;
+}
+
+#results {
+  color: #4caf50;
+  justify-content: center;
+  text-align: center;
+  font-size: 20px;
 }
