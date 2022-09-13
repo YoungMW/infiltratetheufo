@@ -17,7 +17,7 @@ class Player {
     this.speedY = 10;
     this.position = {
       //player's starting position (object)
-      x: 200,
+      x: 0,
       y: 480,
     };
     this.width = 66;
@@ -81,6 +81,35 @@ class Platform {
     c.drawImage(this.image, this.position.x, this.position.y);
     // c.fillStyle = "blue";
     // c.fillRect(this.position.x, this.position.y, this.width.w, this.height.h);
+  }
+}
+
+//==========================================================
+//================MOVING PLATFORM CREATION==================
+//==========================================================
+
+class MovingPlatform {
+  constructor({ x, y, image }) {
+    this.position = {
+      x: x,
+      y: y,
+    };
+    this.velocity = {
+      x: 0,
+      y: 0,
+    };
+    this.image = image;
+    this.width = image.width;
+    this.height = image.height;
+    this.movingPlatformValue = false;
+  }
+  draw() {
+    c.drawImage(this.image, this.position.x, this.position.y);
+  }
+
+  update() {
+    this.draw();
+    this.position.x += this.velocity.x;
   }
 }
 
@@ -185,6 +214,7 @@ const platformImage2 = createImage("./img/Platform barrel.png");
 const platformImage3 = createImage("./img/stonewall.png");
 const winningImage = createImage("./img/alien.png");
 const boulderImage = createImage("./img/boulder.png");
+const movingPlatformImage = createImage("./img/stonewall.png");
 
 //==========================================================
 //============Implement the player class====================
@@ -211,12 +241,10 @@ let platforms = [
   new Platform({ x: 100, y: 500, image: platformImage2 }),
   new Platform({ x: 200, y: 400, image: platformImage2 }),
   new Platform({ x: 300, y: 300, image: platformImage2 }),
-  new Platform({ x: 500, y: 200, image: platformImage3 }),
   new Platform({ x: 300, y: 000, image: platformImage2 }),
   new Platform({ x: 100, y: -100, image: platformImage2 }),
   new Platform({ x: 200, y: -300, image: platformImage2 }),
-  new Platform({ x: 500, y: -450, image: platformImage2 }),
-  new Platform({ x: 300, y: -550, image: platformImage2 }),
+  new Platform({ x: 500, y: -420, image: platformImage2 }),
   new Platform({ x: 150, y: -650, image: platformImage2 }),
   new Platform({ x: 0, y: -750, image: platformImage2 }),
   new Platform({ x: 0, y: -950, image: platformImage2 }),
@@ -234,8 +262,6 @@ let platforms = [
   new Platform({ x: 0, y: -2050, image: platformImage3 }),
   new Platform({ x: 250, y: -2050, image: platformImage3 }),
   new Platform({ x: -100, y: -2200, image: platformImage3 }),
-  new Platform({ x: -200, y: -2350, image: platformImage3 }),
-  new Platform({ x: 200, y: -2400, image: platformImage2 }),
   new Platform({ x: 450, y: -2450, image: platformImage3 }),
   new Platform({ x: 550, y: -2600, image: platformImage3 }),
   new Platform({ x: 650, y: -2750, image: platformImage3 }),
@@ -290,6 +316,27 @@ let boulderObject = [
 ];
 
 //==========================================================
+//==========Implement the MovingPlatform class==============
+//==========================================================
+let movingPlatform = [
+  new MovingPlatform({
+    x: 500,
+    y: 150,
+    image: movingPlatformImage,
+  }),
+  new MovingPlatform({
+    x: 500,
+    y: -550,
+    image: movingPlatformImage,
+  }),
+  new MovingPlatform({
+    x: 500,
+    y: -2350,
+    image: platformImage2,
+  }),
+];
+
+//==========================================================
 //==============Implement Decorative class==================
 //==========================================================
 let decorativeObjects = [
@@ -333,12 +380,10 @@ function restartGame() {
     new Platform({ x: 100, y: 500, image: platformImage2 }),
     new Platform({ x: 200, y: 400, image: platformImage2 }),
     new Platform({ x: 300, y: 300, image: platformImage2 }),
-    new Platform({ x: 500, y: 200, image: platformImage3 }),
     new Platform({ x: 300, y: 000, image: platformImage2 }),
     new Platform({ x: 100, y: -100, image: platformImage2 }),
     new Platform({ x: 200, y: -300, image: platformImage2 }),
-    new Platform({ x: 500, y: -450, image: platformImage2 }),
-    new Platform({ x: 300, y: -550, image: platformImage2 }),
+    new Platform({ x: 500, y: -420, image: platformImage2 }),
     new Platform({ x: 150, y: -650, image: platformImage2 }),
     new Platform({ x: 0, y: -750, image: platformImage2 }),
     new Platform({ x: 0, y: -950, image: platformImage2 }),
@@ -356,8 +401,6 @@ function restartGame() {
     new Platform({ x: 0, y: -2050, image: platformImage3 }),
     new Platform({ x: 250, y: -2050, image: platformImage3 }),
     new Platform({ x: -100, y: -2200, image: platformImage3 }),
-    new Platform({ x: -200, y: -2350, image: platformImage3 }),
-    new Platform({ x: 200, y: -2400, image: platformImage2 }),
     new Platform({ x: 450, y: -2450, image: platformImage3 }),
     new Platform({ x: 550, y: -2600, image: platformImage3 }),
     new Platform({ x: 650, y: -2750, image: platformImage3 }),
@@ -374,6 +417,24 @@ function restartGame() {
     new Platform({ x: 140, y: -4400, image: platformImage3 }),
     new Platform({ x: -140, y: -4550, image: platformImage3 }),
   ]; //creation of an array of platforms
+
+  movingPlatform = [
+    new MovingPlatform({
+      x: 500,
+      y: 150,
+      image: movingPlatformImage,
+    }),
+    new MovingPlatform({
+      x: 500,
+      y: -550,
+      image: movingPlatformImage,
+    }),
+    new MovingPlatform({
+      x: 500,
+      y: -2350,
+      image: platformImage2,
+    }),
+  ];
 
   decorativeObjects = [
     new DecorativeObjects({
@@ -448,8 +509,6 @@ function restartGame() {
       image: boulderImage,
     }),
   ];
-
-  scrollOffset = 0;
 }
 
 //==========================================================
@@ -464,6 +523,23 @@ function animate() {
   c.fillRect(0, 0, canvas.width, canvas.height); //function to clear canvas
   //Updating/call the platform's draw function (style and fill)
 
+  movingPlatform.forEach((movingPlatform) => {
+    if (
+      movingPlatform.movingPlatformValue === false &&
+      movingPlatform.position.x < 700
+    ) {
+      movingPlatform.velocity.x = 2;
+      movingPlatform.movingPlatformValue = true;
+    } else if (
+      movingPlatform.movingPlatformValue === true &&
+      movingPlatform.position.x >= 700
+    ) {
+      movingPlatform.velocity.x = -2;
+    } else if (movingPlatform.position.x <= -300) {
+      movingPlatform.movingPlatformValue = false;
+    }
+  });
+
   decorativeObjects.forEach((decorativeObject) => {
     decorativeObject.draw();
   });
@@ -476,6 +552,10 @@ function animate() {
     winningObject.draw();
   });
 
+  movingPlatform.forEach((movingPlatform) => {
+    movingPlatform.update();
+  });
+
   boulderObject.forEach((boulderObject) => {
     boulderObject.update();
   });
@@ -483,10 +563,13 @@ function animate() {
   player.update(); //Updating/call the draw function and player new position
 
   //===============KEY PRESS CONDITIONS======================
+
   if (keys.right.pressed && player.position.x < 634) {
     player.velocity.x = player.speed;
+    scrollOffset += player.speed;
   } else if (keys.left.pressed && player.position.x > 0) {
     player.velocity.x = -player.speed;
+    scrollOffset -= player.speed;
   } else {
     player.velocity.x = 0;
   }
@@ -509,10 +592,13 @@ function animate() {
       let highscore = scrollOffsetY;
       document.querySelector("#highscore").innerHTML = highscore;
     });
+    movingPlatform.forEach((movingPlatform) => {
+      movingPlatform.position.y += 0.4 * player.speedY;
+    });
   }
 
-  //   console.log(scrollOffset);
-  console.log(scrollOffsetY);
+  console.log(scrollOffset);
+  // console.log(scrollOffsetY);
 
   //===========PLATFORM COLLISION DETECTION===================
   platforms.forEach((platform) => {
@@ -522,6 +608,18 @@ function animate() {
         platform.position.y &&
       player.position.x + player.width >= platform.position.x &&
       player.position.x <= platform.position.x + platform.width
+    ) {
+      player.velocity.y = 0;
+    }
+  });
+
+  movingPlatform.forEach((movingPlatform) => {
+    if (
+      player.position.y + player.height <= movingPlatform.position.y &&
+      player.position.y + player.height + player.velocity.y >=
+        movingPlatform.position.y &&
+      player.position.x + player.width >= movingPlatform.position.x &&
+      player.position.x <= movingPlatform.position.x + movingPlatform.width
     ) {
       player.velocity.y = 0;
     }
@@ -550,7 +648,10 @@ function animate() {
 
   //LOSE SCENARIO
   if (player.position.y + player.height * 0.3 > canvas.height) {
-    // window.confirm(`You died! Your score is ${scrollOffsetY}!`);
+    window.confirm(`You died! Your score is ${scrollOffsetY}!`);
+    keys.up.pressed = false;
+    keys.left.pressed = false;
+    keys.right.pressed = false;
     restartGame();
   }
 
