@@ -533,7 +533,11 @@ function animate() {
   //======================WIN  DETECTION
   if (scrollOffsetY >= 4750) {
     console.log("You win!");
-    window.confirm("You Escaped! You Win!");
+    window.confirm(`You Escaped! You Win! Your score is ${scrollOffsetY}!`);
+    keys.up.pressed = false;
+    keys.left.pressed = false;
+    keys.right.pressed = false;
+    scrollOffsetY = 0;
     restartGame();
   }
   // window.confirm("You Escaped! Well Done!");
@@ -557,8 +561,10 @@ function animate() {
       player.position.y + player.height >= boulder.position.y &&
       player.position.y <= boulder.position.y + boulder.height
     ) {
-      // window.confirm(`You died! Your score is ${scrollOffsetY}!`);
-
+      window.confirm(`You died! Your score is ${scrollOffsetY}!`);
+      keys.up.pressed = false;
+      keys.left.pressed = false;
+      keys.right.pressed = false;
       restartGame();
     }
   });
