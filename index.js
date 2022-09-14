@@ -8,6 +8,8 @@ canvas.height = 700;
 const gravity = 0.5; //creating "gravity" acceleration
 let playerNameUpperCase = "";
 let boulderStartFalling = false;
+let player1 = false;
+let player2 = false;
 
 //==========================================================
 //===================PLAYER CREATION========================
@@ -29,7 +31,13 @@ class Player {
       x: 0,
       y: 0,
     };
-    this.image = createImage("./img/Maskedhero.png");
+
+    if (player1 === true) {
+      this.image = createImage("./img/Maskedhero.png");
+    } else if (player2 === true) {
+      this.image = createImage("./img/Maskedhero2.png");
+    }
+
     this.frames = 0;
   }
 
@@ -140,9 +148,6 @@ class Boulder {
     this.draw();
     this.position.y += this.velocity.y;
     this.position.x += this.velocity.x;
-    // if (this.position.y <= canvas.height) {
-    //   this.velocity.y += 0.2;
-    // }
   }
 }
 
@@ -270,7 +275,7 @@ let platforms = [
   new Platform({ x: 420, y: -4250, image: platformImage3 }),
   new Platform({ x: 140, y: -4400, image: platformImage3 }),
   new Platform({ x: -140, y: -4550, image: platformImage3 }),
-]; //creation of an array of platforms
+];
 
 //==========================================================
 //============Implement the boulder class===================
@@ -310,7 +315,7 @@ let movingPlatform = [
 let decorativeObjects = [
   new DecorativeObjects({
     x: 0, //leftmost part of screen
-    y: -7492, //topmost part of screen
+    y: -7492, //height of background
     image: backgroundImage,
   }),
 ];
@@ -334,6 +339,9 @@ const keys = {
   },
 };
 
+//==========================================================
+//==================Setting ScrollOffSet====================
+//==========================================================
 let scrollOffset = 0;
 let scrollOffsetY = 0;
 
@@ -394,8 +402,8 @@ function restartGame() {
 
   decorativeObjects = [
     new DecorativeObjects({
-      x: 0, //leftmost part of screen
-      y: -7492, //topmost part of screen
+      x: 0,
+      y: -7492,
       image: backgroundImage,
     }),
   ];
@@ -612,7 +620,7 @@ function animate() {
 // document.getElementById("startButton").addEventListener("click", inputName);
 
 document.getElementById("startButton").addEventListener("click", () => {
-  inputNewName();
+  inputNewName1();
   startGame();
   openModal(playerChange);
 });
@@ -663,15 +671,36 @@ function closeModal(modal) {
   overlay.classList.remove("active");
 }
 
-const inputNewName = () => {
+const inputNewName1 = () => {
   playerName = document.getElementById("heroName").value;
   playerNameUpperCase = playerName.toUpperCase();
   closeModal(playerChange);
+  player1 = true;
+  player2 = false;
   restartGame();
   console.log(playerNameUpperCase);
   return playerNameUpperCase;
 };
-submitNewPlayerName.addEventListener("click", inputNewName);
+
+const inputNewName2 = () => {
+  playerName = document.getElementById("heroName").value;
+  playerNameUpperCase = playerName.toUpperCase();
+  closeModal(playerChange);
+  player1 = false;
+  player2 = true;
+  restartGame();
+  console.log(playerNameUpperCase);
+  return playerNameUpperCase;
+};
+
+// document.getElementById('submitNewPlayerName')
+document
+  .getElementById("submitNewPlayerName")
+  .addEventListener("click", inputNewName1);
+
+document
+  .getElementById("submitNewPlayerName2")
+  .addEventListener("click", inputNewName2);
 
 //==========================================================
 //===========EVENT LISTENER - PLAYER MOVEMENTS==============

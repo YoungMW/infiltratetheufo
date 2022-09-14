@@ -19,20 +19,21 @@
   </head>
   <body>
     <div id="startScreen" class="startScreen" style="display: block">
+      <div id="backgroundFrontPage"></div>
       <div class="center">
         <div id="description">
           <button id="descriptionButton" class="buttons">
             Mission Brief
-            <img src="./img/missionbrief.png" height="100" width="100" />
+            <img src="./img/missionbrief.png" height="50" width="50" />
           </button>
           <button id="instructionButton" class="buttons">
-            Game Manual <img src="./img/gears.png" height="100" width="100" />
+            Game Manual <img src="./img/gears.png" height="50" width="50" />
           </button>
         </div>
       </div>
-      <div>
+      <div id="startButtonBox">
         <button id="startButton" class="buttons">
-          Start Game <img src="./img/startgame.png" height="100" width="100" />
+          Start Game <img src="./img/startgame.png" height="50" width="50" />
         </button>
       </div>
       <div id="footer">
@@ -46,8 +47,8 @@
       <div id="mainGameComponents">
         <div id="mainGameComponentsLeft">
           <div id="resetButtons">
-            <button id="back" class="buttons">Esc</button>
-            <button id="changePlayer" class="buttons">New Player</button>
+            <button id="back" class="buttons2">Esc</button>
+            <button id="changePlayer" class="buttons2">New Player</button>
             <div id="playerChange">
               <div id="playerChangeHeader">
                 <div id="playerChangeTitle">New Player</div>
@@ -63,7 +64,14 @@
                   newName="heroName"
                   placeholder="Enter New Hero's name"
                 /><br />
-                <button id="submitNewPlayerName">Submit</button>
+                <div id="characterSelection" class="characterBoxes">
+                  <img src="./img/Maskedhero.png" />
+                  <button id="submitNewPlayerName">Submit</button>
+                </div>
+                <div id="characterSelection2" class="characterBoxes">
+                  <img src="./img/Maskedhero2.png" />
+                  <button id="submitNewPlayerName2">Submit</button>
+                </div>
               </div>
             </div>
             <div id="overlay"></div>

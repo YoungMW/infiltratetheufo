@@ -8,7 +8,7 @@ let changePlayer = document.getElementById("changePlayer");
 const clickDescriptionButton = () => {
   descriptionButton.id = "clickedDescription";
   descriptionButton.innerHTML =
-    "Today, a mysterious unidentified object<br>was sighted entering our atmosphere...<br>You are tasked by King Desmond<br>to infiltrate the foreign spacecraft! <br> <br>The presence of this gigantic UFO<br>was accompanied by<br>a massive earthquake!<br>Avoid falling debris and<br>reach the top as fast as you can!";
+    "Today, a mysterious unidentified object was sighted entering our atmosphere...You are tasked by King Desmond to infiltrate the foreign spacecraft! <br> <br>The presence of this gigantic UFO was accompanied by a massive earthquake! Avoid falling debris and reach the top as fast as you can!";
 };
 descriptionButton.addEventListener("click", clickDescriptionButton);
 
