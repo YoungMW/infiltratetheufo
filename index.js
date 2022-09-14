@@ -7,6 +7,7 @@ canvas.height = 700;
 
 const gravity = 0.5; //creating "gravity" acceleration
 let playerNameUpperCase = "";
+let boulderStartFalling = false;
 
 //==========================================================
 //===================PLAYER CREATION========================
@@ -19,7 +20,7 @@ class Player {
     this.position = {
       //player's starting position (object)
       x: 0,
-      y: -1800,
+      y: 480,
     };
     this.width = 66;
     this.height = 120;
@@ -80,8 +81,6 @@ class Platform {
   }
   draw() {
     c.drawImage(this.image, this.position.x, this.position.y);
-    // c.fillStyle = "blue";
-    // c.fillRect(this.position.x, this.position.y, this.width.w, this.height.h);
   }
 }
 
@@ -277,36 +276,16 @@ let platforms = [
 //============Implement the boulder class===================
 //==========================================================
 let boulderObject = [
-  new Boulder({
-    x: 50,
-    y: 0,
-    image: boulderImage,
-  }),
-  new Boulder({
-    x: 300,
-    y: -300,
-    image: boulderImage,
-  }),
-  new Boulder({
-    x: 0,
-    y: -600,
-    image: boulderImage,
-  }),
-  new Boulder({
-    x: 400,
-    y: -750,
-    image: boulderImage,
-  }),
-  new Boulder({
-    x: 300,
-    y: -900,
-    image: boulderImage,
-  }),
-  new Boulder({
-    x: 600,
-    y: -1300,
-    image: boulderImage,
-  }),
+  new Boulder({ x: 100, y: -100, image: boulderImage }),
+  new Boulder({ x: 300, y: -400, image: boulderImage }),
+  new Boulder({ x: 0, y: -700, image: boulderImage }),
+  new Boulder({ x: 400, y: -850, image: boulderImage }),
+  new Boulder({ x: 300, y: -1000, image: boulderImage }),
+  new Boulder({ x: 600, y: -1400, image: boulderImage }),
+  new Boulder({ x: 550, y: -1700, image: boulderImage }),
+  new Boulder({ x: 150, y: -2100, image: boulderImage }),
+  new Boulder({ x: 300, y: -2250, image: boulderImage }),
+  new Boulder({ x: 450, y: -2400, image: boulderImage }),
 ];
 
 //==========================================================
@@ -430,61 +409,16 @@ function restartGame() {
   ];
 
   boulderObject = [
-    new Boulder({
-      x: 50,
-      y: 0,
-      image: boulderImage,
-    }),
-    new Boulder({
-      x: 300,
-      y: -300,
-      image: boulderImage,
-    }),
-    new Boulder({
-      x: 0,
-      y: -600,
-      image: boulderImage,
-    }),
-    new Boulder({
-      x: 400,
-      y: -750,
-      image: boulderImage,
-    }),
-    new Boulder({
-      x: 300,
-      y: -900,
-      image: boulderImage,
-    }),
-    new Boulder({
-      x: 600,
-      y: -1300,
-      image: boulderImage,
-    }),
-    new Boulder({
-      x: 550,
-      y: -1700,
-      image: boulderImage,
-    }),
-    new Boulder({
-      x: 250,
-      y: -1900,
-      image: boulderImage,
-    }),
-    new Boulder({
-      x: 150,
-      y: -2100,
-      image: boulderImage,
-    }),
-    new Boulder({
-      x: 300,
-      y: -2250,
-      image: boulderImage,
-    }),
-    new Boulder({
-      x: 450,
-      y: -2400,
-      image: boulderImage,
-    }),
+    new Boulder({ x: 100, y: -100, image: boulderImage }),
+    new Boulder({ x: 300, y: -400, image: boulderImage }),
+    new Boulder({ x: 0, y: -700, image: boulderImage }),
+    new Boulder({ x: 400, y: -850, image: boulderImage }),
+    new Boulder({ x: 300, y: -1000, image: boulderImage }),
+    new Boulder({ x: 600, y: -1400, image: boulderImage }),
+    new Boulder({ x: 550, y: -1700, image: boulderImage }),
+    new Boulder({ x: 150, y: -2100, image: boulderImage }),
+    new Boulder({ x: 300, y: -2250, image: boulderImage }),
+    new Boulder({ x: 450, y: -2400, image: boulderImage }),
   ];
 }
 
@@ -499,6 +433,10 @@ function animate() {
   c.fillStyle = "white";
   c.fillRect(0, 0, canvas.width, canvas.height); //function to clear canvas
   //Updating/call the platform's draw function (style and fill)
+
+  if (scrollOffsetY > 10) {
+    boulderStartFalling = true;
+  }
 
   //====================MOVING PLATFORMS======================
   movingPlatform.forEach((movingPlatform) => {
@@ -536,7 +474,9 @@ function animate() {
   });
 
   boulderObject.forEach((boulderObject) => {
-    boulderObject.update();
+    if (boulderStartFalling === true) {
+      boulderObject.update();
+    }
   });
 
   player.update(); //Updating/call the draw function and player new position
@@ -612,6 +552,9 @@ function animate() {
   if (scrollOffsetY > 2500) {
     gameInfoBox.innerHTML =
       "You have made it halfway there! The remaining journey is treacherous, time yourselves carefully and remember, DON'T FALL!";
+  } else {
+    gameInfoBox.innerHTML =
+      "Save King Desmond's Kingdom, avoid falling boulders and infiltrate the spacecraft! Take it slow when navigating through those moving cobblestones!";
   }
 
   if (scrollOffsetY >= 4750) {
@@ -659,14 +602,20 @@ function animate() {
 //==========================================================
 //=======================START GAME=========================
 //==========================================================
-const inputName = () => {
-  playerName = window.prompt("Enter your hero's name: ");
-  playerNameUpperCase = playerName.toUpperCase();
-  return playerNameUpperCase;
-};
+// const inputName = () => {
+//   playerName = window.prompt("Enter your hero's name: ");
+//   playerNameUpperCase = playerName.toUpperCase();
+//   return playerNameUpperCase;
+// };
 
-document.getElementById("startButton").addEventListener("click", startGame);
-document.getElementById("startButton").addEventListener("click", inputName);
+// document.getElementById("startButton").addEventListener("click", startGame);
+// document.getElementById("startButton").addEventListener("click", inputName);
+
+document.getElementById("startButton").addEventListener("click", () => {
+  inputNewName();
+  startGame();
+  openModal(playerChange);
+});
 
 function startGame() {
   animate();
@@ -686,13 +635,43 @@ const backToMenu = () => {
 };
 document.getElementById("back").addEventListener("click", backToMenu);
 
+const openPlayerChangeButton = document.querySelector("#changePlayer");
+const closeModalButton = document.querySelector("#closeButton");
+const overlay = document.getElementById("overlay");
+const playerChange = document.getElementById("playerChange");
+
+openPlayerChangeButton.addEventListener("click", () => {
+  openModal(playerChange);
+});
+
+closeModalButton.addEventListener("click", () => {
+  closeModal(playerChange);
+});
+
+function openModal(modal) {
+  if (modal == null) return;
+  modal.classList.add("active");
+  overlay.classList.add("active");
+  boulderStartFalling = false;
+  scrollOffsetY = 0;
+  console.log(boulderStartFalling);
+}
+
+function closeModal(modal) {
+  if (modal == null) return;
+  modal.classList.remove("active");
+  overlay.classList.remove("active");
+}
+
 const inputNewName = () => {
-  playerName = window.prompt("We have a new hero! Enter your name: ");
+  playerName = document.getElementById("heroName").value;
   playerNameUpperCase = playerName.toUpperCase();
+  closeModal(playerChange);
   restartGame();
+  console.log(playerNameUpperCase);
   return playerNameUpperCase;
 };
-changePlayer.addEventListener("click", inputNewName);
+submitNewPlayerName.addEventListener("click", inputNewName);
 
 //==========================================================
 //===========EVENT LISTENER - PLAYER MOVEMENTS==============

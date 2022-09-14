@@ -48,12 +48,33 @@
           <div id="resetButtons">
             <button id="back" class="buttons">Esc</button>
             <button id="changePlayer" class="buttons">New Player</button>
+            <div id="playerChange">
+              <div id="playerChangeHeader">
+                <div id="playerChangeTitle">New Player</div>
+                <button id="closeButton" class="closeButton">&times;</button>
+              </div>
+              <div id="playerChangeBody">
+                <label id="playerChangeLabel"
+                  >We have a new hero! Enter your Name: </label
+                ><br />
+                <input
+                  type="text"
+                  id="heroName"
+                  newName="heroName"
+                  placeholder="Enter New Hero's name"
+                /><br />
+                <button id="submitNewPlayerName">Submit</button>
+              </div>
+            </div>
+            <div id="overlay"></div>
           </div>
+          <div id="gameInfoHeader"><b>Mission Log</b></div>
           <div id="gameInfo">
             Save King Desmond's Kingdom, avoid falling boulders and infiltrate
             the spacecraft! Take it slow when navigating through those moving
             cobblestones!
           </div>
+
           <div id="highscoreTable">
             <div id="highscoreTableHeader">INFILTRATE THE UFO</div>
             <div id="highscoreTableSubHeader">HIGHSCORE</div>
