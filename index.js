@@ -19,7 +19,7 @@ class Player {
     this.position = {
       //player's starting position (object)
       x: 0,
-      y: 480,
+      y: -1800,
     };
     this.width = 66;
     this.height = 120;
@@ -576,8 +576,8 @@ function animate() {
     });
   }
 
-  console.log(scrollOffset);
-  // console.log(scrollOffsetY);
+  // console.log(scrollOffset);
+  console.log(scrollOffsetY);
 
   //===========PLATFORM COLLISION DETECTION===================
   platforms.forEach((platform) => {
@@ -608,6 +608,12 @@ function animate() {
   //======================WIN SCENARIO========================
   //==========================================================
   //======================WIN  DETECTION
+
+  if (scrollOffsetY > 2500) {
+    gameInfoBox.innerHTML =
+      "You have made it halfway there! The remaining journey is treacherous, time yourselves carefully and remember, DON'T FALL!";
+  }
+
   if (scrollOffsetY >= 4750) {
     console.log("You win!");
     keys.up.pressed = false;
