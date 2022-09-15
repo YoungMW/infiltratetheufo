@@ -565,7 +565,6 @@ function animate() {
   }
 
   if (scrollOffsetY >= 4800) {
-    // console.log("You win!");
     keys.up.pressed = false;
     keys.left.pressed = false;
     keys.right.pressed = false;
