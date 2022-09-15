@@ -572,9 +572,6 @@ function animate() {
     scrollOffsetY = 0;
     restartGame();
   }
-  // window.confirm("You Escaped! Well Done!");
-  // restartGame();
-  // console.log(`Your highscore is ${highscore}`);
 
   //==========================================================
   //======================LOSE SCENARIO========================
