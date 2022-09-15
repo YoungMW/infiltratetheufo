@@ -35,3 +35,5 @@ const updateGameInfoBoxWin = () => {
 };
 
 console.log("test");
+
+console.log("test2");
