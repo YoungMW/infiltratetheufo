@@ -33,9 +33,9 @@ class Player {
     };
 
     if (player1 === true) {
-      this.image = createImage("./img/maskedhero.png");
+      this.image = createImage("./img/maskhero.png");
     } else if (player2 === true) {
-      this.image = createImage("./img/maskedhero2.png");
+      this.image = createImage("./img/maskhero2.png");
     }
 
     this.frames = 0;
