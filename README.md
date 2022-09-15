@@ -4,19 +4,20 @@ This game is built using HTML, CSS and JavaScript on VSC.
 
 1. [ Game Description ](#desc)
 2. [ Canvas Creation ](#canvas)
-3. [ Classes Creation ](#classescreation)
+3. [Global Definitions](#global)
+4. [ Classes Creation ](#classescreation)
 * [Player Creation](#playercreation)
 * [Platform Creation](#platformcreation)
 * [Moving Platform Creation](#movingplatformcreation)
 * [Boulder Creation](#bouldercreation)
 * [Background Creation](#backgroundcreation)
-4. [ Implementation of Classes ](#implementation)
-5. [ Win/Lose Scenarios ](#scenarios)
-6. [ Key Press ](#keypress)
-7. [Collision Detection](#detection)
-8. [Animations](#animations)
-9. [Restart Game](#restartgame)
-10. [Highscore System](#highscore)
+5. [ Implementation of Classes ](#implementation)
+6. [ Win/Lose Scenarios ](#scenarios)
+7. [ Key Press ](#keypress)
+8. [Collision Detection](#detection)
+9. [Animations](#animations)
+10. [Restart Game](#restartgame)
+11. [Highscore System](#highscore)
 
 <a name="desc"></a>
 ## 1. Game Description
@@ -43,9 +44,22 @@ canvas.width = 700;
 canvas.height = 700;
 ```
 
+<a name="global"></a>
+## 3. Global Definitions
+<p>Global variables are defined at the top of the script to specify values that are important for conditional statements defined in the later stages.</p>
+  
+  ```
+  
+  const gravity = 0.5; //creating "gravity" acceleration
+let playerNameUpperCase = "";
+let boulderStartFalling = false;
+let player1 = false;
+let player2 = false;
+  
+  ```
 
 <a name="classescreation"></a>
-## 3. Classes Creation
+## 4. Classes Creation
 <p>Classes Creation are used to define the building blocks of the games. Some of these include:</p>
 <li>Player Classes</li>
 <li>Platform Classes</li>
@@ -54,7 +68,7 @@ canvas.height = 700;
 <li>Background Classes</li>
 
 <a name="playercreation"></a>
-<h3>3.1. Player Creation</h3>
+<h3>4.1. Player Creation</h3>
 <p>The Player is created using the Class keyword followed by the method constructor(). An example of creating the Player class is shown here:
 
 ```
@@ -107,7 +121,7 @@ draw() {
 
 
 <a name="platformcreation"></a>
-<h3>3.2. Platform Creation</h3>
+<h3>4.2. Platform Creation</h3>
 
 <p>The Platform is created using the Class keyword followed by the method constructor(). An example of creating the Platform class is shown here:
 
@@ -136,7 +150,7 @@ class Platform {
 
 
 <a name="movingplatformcreation"></a>
-<h3>3.3. Moving Platform Creation</h3>
+<h3>4.3. Moving Platform Creation</h3>
 
 <p>The Moving Platform is created using the Class keyword followed by the method constructor(). An example of creating the Moving Platform class is shown here:
 
@@ -172,7 +186,7 @@ class MovingPlatform {
 
 
 <a name="bouldercreation"></a>
-<h3>3.4. Boulder Creation</h3>
+<h3>4.4. Boulder Creation</h3>
 
 
 <p>The falling boulders or Boulder is created using the Class keyword followed by the method constructor(). An example of creating the Boulder class is shown below. The concept is similar to the examples above:
@@ -207,7 +221,7 @@ class Boulder {
 <p>The Boulder's properties such as starting position on the canvas, width and height, "image to use" and updating requirements are defined within. The update method will redraw the Boulder class using the new values of it's properties.</p>
 
 <a name="backgroundcreation"></a>
-<h3>3.5. Background Creation</h3>
+<h3>4.5. Background Creation</h3>
 
 
 <p>The Background is created using the Class keyword followed by the method constructor(). An example of creating the Background class is shown below. The concept is similar to the examples above:
@@ -241,7 +255,7 @@ class DecorativeObjects {
 
 
 <a name="implementation"></a>
-## 4. Implementation of Classes
+## 5. Implementation of Classes
 <p>In order to populate the Classes described above onto the canvas itself, the following implementation approach is used through an array with individual key-value pairs.</p>
 
 ```
@@ -259,7 +273,7 @@ let platforms = [
 ```
 
 <a name="scenarios"></a>
-## 5. Win/Lose Scenarios
+## 6. Win/Lose Scenarios
 
 <p>In order to complete the game, a win scenario is created. Likewise, lose scenarios are needed to complete the game. The following code snippets are used to create those scenarios</p>
 
@@ -305,7 +319,7 @@ let platforms = [
     <p>The lose scenario here is tied to a couple of conditional statements. The Player will lose the game upon falling off the canvas or coming into contact with falling boulders. Afterwhich other relevant functions will be called to log the score and restart the game.</p>
     
 <a name="keypress"></a>
-## 6. Key Press
+## 7. Key Press
 
 <p>The Player's movement along the canvas will be employed through key presses on the keyboard. Event Listeners are used to "listen" for certain keys being pressed.</p>
 
@@ -363,7 +377,7 @@ addEventListener("keyup", ({ keyCode }) => {
 ```
 
 <a name="detection"></a>
-## 7. Collision Detection
+## 8. Collision Detection
 
 <p>The Collision Detection system is coded to allow the Player to jump onto Platforms and Moving Platforms to further the journey upwards.</p>
 
@@ -417,7 +431,7 @@ platforms.forEach((platform) => {
 
 
 <a name="animations"></a>
-## 8. Animations
+## 9. Animations
 
 <p>To provide an animated feel to the game, the function animate() is used to call the draw() method on individual arrays of classes. Conditional statements are also included to ensure certain animations happen when needed.</p>
 
@@ -478,7 +492,7 @@ function animate() {
   ```
   
   <a name="restartgame"></a>
-## 9. Restart Game
+## 10. Restart Game
 
 <p>The Restart Game function, restartgame() will be called when the Player invokes the Win/Lose scenarios. All the basic blocks of the game will reset into its original position, allower the Player to have a go at the game again.</p>
 
@@ -508,7 +522,7 @@ function restartGame() {
 ```
 
   <a name="highscore"></a>
-## 10. Highscore System
+## 11. Highscore System
 <p>The highscore system is used to track the Player's score. This is done by tracking the vertical offset or scrollOffsetY "travelled".
   
   ```
