@@ -21,11 +21,21 @@ Today, a mysterious unidentified object was sighted entering our atmosphere...Yo
 <a name="canvas"></a>
 ## 2. Canvas Creation
 
-The canvas is the foundation for this game. Over here the following properties must be set and adhered to before proceeding with the rest of the game creation:
+The canvas element is the foundation for this game and will be used as a container for graphics. Over here the following properties must be set and adhered to before proceeding with the rest of the game creation:
 <li>Canvas Width</li>
 <li>Canvas Height</li>
 <br>
-These properties are the dimensions of the canvas that will be used to draw the game. The canvas is directly linked to the HTML page.
+These properties are the dimensions of the canvas that will be used to draw the game. The canvas is linked to the HTML page through the following DOM manipulation.
+<br>
+
+```
+const canvas = document.querySelector("canvas");
+const c = canvas.getContext("2d");
+
+//changing canvas size to size of window screen
+canvas.width = 700;
+canvas.height = 700;
+```
 
 
 <a name="classescreation"></a>
@@ -39,7 +49,7 @@ These properties are the dimensions of the canvas that will be used to draw the 
 
 <a name="playercreation"></a>
 <h3>1. Player Creation</h3>
-<p>The Player is created using the Class keyword followed by the method constructor(). An example of creating the player class is shown here:
+<p>The Player is created using the Class keyword followed by the method constructor(). An example of creating the Player class is shown here:
 
 ```
 class Player {
@@ -58,9 +68,9 @@ class Player {
     };
 ```
 
-<p>The player's properties such as velocity, starting position on the canvas, width and height are defined within.</p>
+<p>The Player's properties such as velocity, starting position on the canvas, width, height and "image to use" are defined within.</p>
 
-<p>The second part of the player class dictates the drawing method that will be used for the player.</p>
+<p>The second part of the Player class dictates the drawing method that will be used for the Player. The update function will redraw the Player class using the new values of the Player's properties.</p>
 
 ```
 draw() {
@@ -89,10 +99,11 @@ draw() {
   }
   ```
 
+
 <a name="platformcreation"></a>
 <h3>2. Platform Creation</h3>
 
-<p>The Platform is created using the Class keyword followed by the method constructor(). An example of creating the platform class is shown here:
+<p>The Platform is created using the Class keyword followed by the method constructor(). An example of creating the Platform class is shown here:
 
 ```
 class Platform {
@@ -115,23 +126,112 @@ class Platform {
 }
 ```
 
-<p>The platform's properties such as starting position on the canvas, width and height and "image to use" are defined within.</p>
+<p>The Platform's properties such as starting position on the canvas, width and height and "image to use" are defined within.</p>
 
 
 <a name="movingplatformcreation"></a>
 <h3>3. Moving Platform Creation</h3>
 
-sometext
+<p>The Moving Platform is created using the Class keyword followed by the method constructor(). An example of creating the Moving Platform class is shown here:
+
+```
+class MovingPlatform {
+  constructor({ x, y, image }) {
+    this.position = {                              //moving platform's position
+      x: x,
+      y: y,
+    };
+    this.velocity = {                              //moving platform's velocity
+      x: 0,
+      y: 0,
+    };
+    this.image = image;                            //moving platform's image
+    this.width = image.width;                      //moving platform's width and height
+    this.height = image.height;                    
+    this.movingPlatformValue = false;              //value used to aid the platform's directional movement
+  }
+  draw() {                                         //The draw function used will be called repeatedly, about 60 times per second.
+    c.drawImage(this.image, this.position.x, this.position.y);
+  }
+
+  update() {                                       //The update function used to update the drawings on canvas.
+    this.draw();
+    this.position.x += this.velocity.x;
+  }
+}
+```
+
+<p>The moving Platform's properties such as starting position on the canvas, width and height, "image to use" and updating requirements are defined within. The update function will redraw the Moving Platform class using the new values of it's properties.</p>
+
+
 
 <a name="bouldercreation"></a>
 <h3>4. Boulder Creation</h3>
 
-sometext
+
+<p>The falling boulders or Boulder is created using the Class keyword followed by the method constructor(). An example of creating the Boulder class is shown below. The concept is similar to the examples above:
+
+```
+class Boulder {
+  constructor({ x, y, image }) {
+    this.position = {
+      x: x,
+      y: y,
+    };
+    this.velocity = {
+      x: 0,
+      y: 0.8,
+    };
+    this.image = image;
+    this.width = image.width;
+    this.height = image.height;
+  }
+  draw() {
+    c.drawImage(this.image, this.position.x, this.position.y);
+  }
+
+  update() {
+    this.draw();
+    this.position.y += this.velocity.y;
+    this.position.x += this.velocity.x;
+  }
+}
+```
+
+<p>The Boulder's properties such as starting position on the canvas, width and height, "image to use" and updating requirements are defined within. The update function will redraw the Boulder class using the new values of it's properties.</p>
 
 <a name="backgroundcreation"></a>
 <h3>5. Background Creation</h3>
 
-sometext
+
+<p>The Background is created using the Class keyword followed by the method constructor(). An example of creating the Background class is shown below. The concept is similar to the examples above:
+
+```
+class DecorativeObjects {
+  constructor({ x, y, image }) {
+    this.position = {
+      x: x,
+      y: y,
+    };
+
+    this.image = image;
+
+    this.width = image.width;
+    this.height = 8192;
+  }
+  draw() {
+    c.drawImage(
+      this.image,
+      this.position.x,
+      this.position.y,
+      this.width,
+      this.height
+    );
+  }
+}
+```
+
+<p>The Background's properties such as starting position on the canvas, width and height and "image to use" are defined within.</p>
 
 
 <a name="scenarios"></a>
