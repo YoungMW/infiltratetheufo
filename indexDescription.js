@@ -33,7 +33,3 @@ const updateGameInfoBoxWin = () => {
   results.id = "results";
   results.innerHTML = `${playerNameUpperCase} ESCAPED! ${scrollOffsetY}!`;
 };
-
-console.log("test");
-
-console.log("test2");
