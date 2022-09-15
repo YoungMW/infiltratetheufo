@@ -2,7 +2,7 @@
 This game is built using HTML, CSS and JavaScript on VSC.
 # Table of Contents
 
-1. [ Description ](#desc)
+1. [ Game Description ](#desc)
 2. [ Canvas Creation ](#canvas)
 3. [ Classes Creation ](#classescreation)
 * [Player Creation](#playercreation)
@@ -10,7 +10,7 @@ This game is built using HTML, CSS and JavaScript on VSC.
 * [Moving Platform Creation](#movingplatformcreation)
 * [Boulder Creation](#bouldercreation)
 * [Background Creation](#backgroundcreation)
-
+4. [ Win/Lose Scenarios ](#scenarios)
 
 <a name="desc"></a>
 ## 1. Game Description
@@ -64,13 +64,12 @@ class Player {
 
 ```
 draw() {
-    //If you define a function called "draw" in your code, then that function will get called repeatedly, about 60 times per second.
-    c.drawImage(
+    c.drawImage(                                //The draw function used will be called repeatedly, about 60 times per second.
       this.image,
-      200 * this.frames, //flipping image through a sprite sheet, 200px per frame
+      200 * this.frames,                        //flipping image through a sprite sheet, 200px per frame
       0,
-      200, //cropping image from sprite sheet
-      400, //cropping image from sprite sheet
+      200,                                      //cropping image from sprite sheet
+      400,                                      //cropping image from sprite sheet
       this.position.x,
       this.position.y,
       this.width,
@@ -79,13 +78,12 @@ draw() {
   }
 
   update() {
-    //updating player's y position with gravity on the canvas
-    this.draw();
+    this.draw();                                
     // this.frames += 1;
     // if (this.frames > 19) this.frames = 0;
     this.position.x += this.velocity.x;
     this.position.y += this.velocity.y;
-    if (this.position.y + this.height + this.velocity.y <= canvas.height) {
+    if (this.position.y + this.height + this.velocity.y <= canvas.height) { //updating player's y position with gravity on the canvas
       this.velocity.y += gravity; //acceleration to "gravity"
     }
   }
@@ -101,18 +99,18 @@ class Platform {
   //platform's properties
   constructor({ x, y, image }) {
     //platform's starting position (object)
-    this.position = {
+    this.position = {                              //platform's position
       x: x,
       y: y,
     };
 
-    this.image = image;
+    this.image = image;                            //platform's image
 
-    this.width = image.width;
+    this.width = image.width;                      //platform's width and height
     this.height = image.height;
   }
   draw() {
-    c.drawImage(this.image, this.position.x, this.position.y);
+    c.drawImage(this.image, this.position.x, this.position.y);         //drawing the platform on canvas
   }
 }
 ```
@@ -134,3 +132,9 @@ sometext
 <h3>5. Background Creation</h3>
 
 sometext
+
+
+<a name="scenarios"></a>
+## 4. Win/Lose Scenarios
+
+some text
