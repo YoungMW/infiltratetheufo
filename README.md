@@ -10,7 +10,8 @@ This game is built using HTML, CSS and JavaScript on VSC.
 * [Moving Platform Creation](#movingplatformcreation)
 * [Boulder Creation](#bouldercreation)
 * [Background Creation](#backgroundcreation)
-4. [ Win/Lose Scenarios ](#scenarios)
+4. [ Implementation of Classes ](#implementation)
+5. [ Win/Lose Scenarios ](#scenarios)
 
 <a name="desc"></a>
 ## 1. Game Description
@@ -201,7 +202,7 @@ class Boulder {
 <p>The Boulder's properties such as starting position on the canvas, width and height, "image to use" and updating requirements are defined within. The update function will redraw the Boulder class using the new values of it's properties.</p>
 
 <a name="backgroundcreation"></a>
-<h3>5. Background Creation</h3>
+<h3>3.5. Background Creation</h3>
 
 
 <p>The Background is created using the Class keyword followed by the method constructor(). An example of creating the Background class is shown below. The concept is similar to the examples above:
@@ -234,7 +235,66 @@ class DecorativeObjects {
 <p>The Background's properties such as starting position on the canvas, width and height and "image to use" are defined within.</p>
 
 
-<a name="scenarios"></a>
-## 4. Win/Lose Scenarios
+<a name="implementation"></a>
+## 4. Implementation of Classes
+<p>In order to populate the Classes described above onto the canvas itself, the following implementation approach is used through an array with individual key-value pairs.</p>
 
-some text
+```
+let player = new Player();
+
+let platforms = [
+  new Platform({ x: -100, y: 650, image: platformImage }),
+  new Platform({ x: 100, y: 500, image: platformImage2 }),
+  new Platform({ x: 200, y: 400, image: platformImage2 }),
+  new Platform({ x: 300, y: 300, image: platformImage2 }),
+  new Platform({ x: 300, y: 000, image: platformImage2 }),
+  new Platform({ x: 100, y: -100, image: platformImage2 }),
+  new Platform({ x: 200, y: -300, image: platformImage2 }),
+];
+```
+
+<a name="scenarios"></a>
+## 5. Win/Lose Scenarios
+
+<p>In order to complete the game, a win scenario is created. Likewise, lose scenarios are needed to complete the game. The following code snippets are used to create those scenarios</p>
+
+```
+ if (scrollOffsetY >= 4800) {
+    // console.log("You win!");
+    keys.up.pressed = false;
+    keys.left.pressed = false;
+    keys.right.pressed = false;
+    updateGameInfoBoxWin();
+    scrollOffsetY = 0;
+    restartGame();
+  }
+  ```
+  
+  <p>The win scenario here is tied to a conditional statement. The Player will win the game after crossing a certain height and subsequently other relevant functions will be called to log the score and restart the game.</p>
+  
+  ```
+  if (player.position.y + player.height * 0.3 > canvas.height) {
+    keys.up.pressed = false;
+    keys.left.pressed = false;
+    keys.right.pressed = false;
+    updateGameInfoBoxDeath();
+    restartGame();
+  }
+
+  boulderObject.forEach((boulder) => {
+    if (
+      player.position.x + player.width >= boulder.position.x &&
+      player.position.x <= boulder.position.x + boulder.width &&
+      player.position.y + player.height >= boulder.position.y &&
+      player.position.y <= boulder.position.y + boulder.height
+    ) {
+      keys.up.pressed = false;
+      keys.left.pressed = false;
+      keys.right.pressed = false;
+      updateGameInfoBoxDeath();
+      restartGame();
+    }
+  });
+  ```
+  
+    <p>The lose scenario here is tied to a couple of conditional statements. The Player will lose the game upon falling off the canvas or coming into contact with falling boulders. Afterwhich other relevant functions will be called to log the score and restart the game.</p>
