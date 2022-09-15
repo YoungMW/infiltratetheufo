@@ -656,7 +656,7 @@ closeModalButton.addEventListener("click", () => {
 });
 
 function openModal(modal) {
-  if (modal == null) return;
+  // if (modal == null) return;
   modal.classList.add("active");
   overlay.classList.add("active");
   boulderStartFalling = false;
