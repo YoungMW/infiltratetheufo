@@ -524,7 +524,7 @@ function animate() {
   }
 
   // console.log(scrollOffset);
-  console.log(scrollOffsetY);
+  // console.log(scrollOffsetY);
 
   //===========PLATFORM COLLISION DETECTION===================
   platforms.forEach((platform) => {
@@ -565,7 +565,7 @@ function animate() {
   }
 
   if (scrollOffsetY >= 4800) {
-    console.log("You win!");
+    // console.log("You win!");
     keys.up.pressed = false;
     keys.left.pressed = false;
     keys.right.pressed = false;
@@ -609,14 +609,6 @@ function animate() {
 //==========================================================
 //=======================START GAME=========================
 //==========================================================
-// const inputName = () => {
-//   playerName = window.prompt("Enter your hero's name: ");
-//   playerNameUpperCase = playerName.toUpperCase();
-//   return playerNameUpperCase;
-// };
-
-// document.getElementById("startButton").addEventListener("click", startGame);
-// document.getElementById("startButton").addEventListener("click", inputName);
 
 document.getElementById("startButton").addEventListener("click", () => {
   inputNewName1();
@@ -661,7 +653,7 @@ function openModal(modal) {
   overlay.classList.add("active");
   boulderStartFalling = false;
   scrollOffsetY = 0;
-  console.log(boulderStartFalling);
+  // console.log(boulderStartFalling);
 }
 
 function closeModal(modal) {
@@ -677,7 +669,7 @@ const inputNewName1 = () => {
   player1 = true;
   player2 = false;
   restartGame();
-  console.log(playerNameUpperCase);
+  // console.log(playerNameUpperCase);
   return playerNameUpperCase;
 };
 
@@ -688,7 +680,6 @@ const inputNewName2 = () => {
   player1 = false;
   player2 = true;
   restartGame();
-  console.log(playerNameUpperCase);
   return playerNameUpperCase;
 };
 
@@ -709,18 +700,18 @@ addEventListener("keydown", ({ keyCode }) => {
   //finding the keycodes for each key.
   switch (keyCode) {
     case 65:
-      console.log("left");
+      // console.log("left");
       keys.left.pressed = true;
       break;
     case 83:
-      console.log("down");
+      // console.log("down");
       break;
     case 68:
-      console.log("right");
+      // console.log("right");
       keys.right.pressed = true;
       break;
     case 87:
-      console.log("up");
+      // console.log("up");
       if (player.velocity.y === 0) {
         keys.up.pressed = true;
         player.velocity.y -= player.speedY;
@@ -734,18 +725,18 @@ addEventListener("keyup", ({ keyCode }) => {
   //finding the keycodes for each key.
   switch (keyCode) {
     case 65:
-      console.log("left");
+      // console.log("left");
       keys.left.pressed = false;
       break;
     case 83:
-      console.log("down");
+      // console.log("down");
       break;
     case 68:
-      console.log("right");
+      // console.log("right");
       keys.right.pressed = false;
       break;
     case 87:
-      console.log("up");
+      // console.log("up");
       keys.up.pressed = false;
       player.velocity.y -= 0;
       break;
