@@ -665,7 +665,7 @@ function openModal(modal) {
 }
 
 function closeModal(modal) {
-  if (modal == null) return;
+  // if (modal == null) return;
   modal.classList.remove("active");
   overlay.classList.remove("active");
 }
