@@ -379,7 +379,7 @@ addEventListener("keyup", ({ keyCode }) => {
 <a name="detection"></a>
 ## 8. Collision Detection
 
-<p>The Collision Detection system is coded to allow the Player to jump onto Platforms and Moving Platforms to further the journey upwards.</p>
+<p>The Collision Detection system is coded to allow the Player to jump onto Platforms and Moving Platforms to further the journey upwards. Without this, the Player will fall right through and back to his/her original position.</p>
 
 ```
 platforms.forEach((platform) => {
@@ -494,7 +494,7 @@ function animate() {
   <a name="restartgame"></a>
 ## 10. Restart Game
 
-<p>The Restart Game function, restartgame() will be called when the Player invokes the Win/Lose scenarios. All the basic blocks of the game will reset into its original position, allower the Player to have a go at the game again.</p>
+<p>The Restart Game function, restartgame() will be called when the Player invokes the Win/Lose scenarios or selects a new player to take over. All the basic blocks of the game will reset into its original position, allowing the Player to have a go at the game again while setting new values to the Global variables.</p>
 
 ```
 function restartGame() {
@@ -523,7 +523,7 @@ function restartGame() {
 
   <a name="highscore"></a>
 ## 11. Highscore System
-<p>The highscore system is used to track the Player's score. This is done by tracking the vertical offset or scrollOffsetY "travelled".
+<p>The highscore system is used to track the Player's score. This is done by tracking the vertical offset or scrollOffsetY "travelled" by the Player and appended onto the HTML for display.
   
   ```
   let highscore = scrollOffsetY;
