@@ -212,12 +212,12 @@ function createImage(imageSrc) {
   image.src = imageSrc;
   return image;
 }
-const backgroundImage = createImage("./img/castletest.png");
+const backgroundImage = createImage("./img/castle.png");
 const platformImage = createImage("./img/woodenplatform.png");
 const platformImage2 = createImage("./img/platformbarrel.png");
 const platformImage3 = createImage("./img/stonewall.png");
-const winningImage = createImage("./img/alien.png");
-const boulderImage = createImage("./img/boulder.png");
+const winningImage = createImage("./img/stupidalien.png");
+const boulderImage = createImage("./img/boulders.png");
 const movingPlatformImage = createImage("./img/stonewall.png");
 
 //==========================================================
