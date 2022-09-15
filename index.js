@@ -212,7 +212,6 @@ function createImage(imageSrc) {
   image.src = imageSrc;
   return image;
 }
-// const image = new Image();
 const backgroundImage = createImage("./img/castletest.png");
 const platformImage = createImage("./img/Wooden_Platform.png");
 const platformImage2 = createImage("./img/Platform barrel.png");
@@ -565,7 +564,7 @@ function animate() {
       "Save King Desmond's Kingdom, avoid falling boulders and infiltrate the spacecraft! Take it slow when navigating through those moving cobblestones!";
   }
 
-  if (scrollOffsetY >= 4750) {
+  if (scrollOffsetY >= 4800) {
     console.log("You win!");
     keys.up.pressed = false;
     keys.left.pressed = false;
