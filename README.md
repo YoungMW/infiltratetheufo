@@ -16,6 +16,7 @@ This game is built using HTML, CSS and JavaScript on VSC.
 7. [Collision Detection](#detection)
 8. [Animations](#animations)
 9. [Restart Game](#restartgame)
+10. [Highscore System](#highscore)
 
 <a name="desc"></a>
 ## 1. Game Description
@@ -504,4 +505,14 @@ function restartGame() {
     .
     }
     
-    ```
+```
+
+  <a name="highscore"></a>
+## 10. Highscore System
+<p>The highscore system is used to track the Player's score. This is done by tracking the vertical offset or scrollOffsetY "travelled".
+  
+  ```
+  let highscore = scrollOffsetY;
+      document.querySelector("#highscore").innerHTML = highscore;
+  ```
+  
