@@ -33,9 +33,9 @@ class Player {
     };
 
     if (player1 === true) {
-      this.image = createImage("./img/Maskedhero.png");
+      this.image = createImage("./img/maskedhero.png");
     } else if (player2 === true) {
-      this.image = createImage("./img/Maskedhero2.png");
+      this.image = createImage("./img/maskedhero2.png");
     }
 
     this.frames = 0;
@@ -213,8 +213,8 @@ function createImage(imageSrc) {
   return image;
 }
 const backgroundImage = createImage("./img/castletest.png");
-const platformImage = createImage("./img/Wooden_Platform.png");
-const platformImage2 = createImage("./img/Platform barrel.png");
+const platformImage = createImage("./img/woodenplatform.png");
+const platformImage2 = createImage("./img/platformbarrel.png");
 const platformImage3 = createImage("./img/stonewall.png");
 const winningImage = createImage("./img/alien.png");
 const boulderImage = createImage("./img/boulder.png");
