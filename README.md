@@ -14,7 +14,8 @@ This game is built using HTML, CSS and JavaScript on VSC.
 5. [ Win/Lose Scenarios ](#scenarios)
 6. [ Key Press ](#keypress)
 7. [Collision Detection](#detection)
-
+8. [Animations](#animations)
+9. [Restart Game](#restartgame)
 
 <a name="desc"></a>
 ## 1. Game Description
@@ -412,3 +413,95 @@ platforms.forEach((platform) => {
 }
 
 ```
+
+
+<a name="animations"></a>
+## 8. Animations
+
+<p>To provide an animated feel to the game, the function animate() is used to call the draw() method on individual arrays of classes. Conditional statements are also included to ensure certain animations happen when needed.</p>
+
+```
+function animate() {
+  this.toggleScreen("startScreen", false);
+  this.toggleScreen("canvas", true);
+  requestAnimationFrame(animate); //requestAnimationFrame() method tells the browser that you wish to perform an animation and requests that the browser calls a specified function to update an animation before the next repaint. The method takes a callback as an argument to be invoked before the repaint.
+  c.fillStyle = "white";
+  c.fillRect(0, 0, canvas.width, canvas.height); //function to clear canvas
+  //Updating/call the platform's draw function (style and fill)
+
+  if (scrollOffsetY > 10) {
+    boulderStartFalling = true;
+  }
+
+  //====================MOVING PLATFORMS======================
+  movingPlatform.forEach((movingPlatform) => {
+    if (
+      movingPlatform.movingPlatformValue === false &&
+      movingPlatform.position.x < 700
+    ) {
+      movingPlatform.velocity.x = 2;
+      movingPlatform.movingPlatformValue = true;
+    } else if (
+      movingPlatform.movingPlatformValue === true &&
+      movingPlatform.position.x >= 700
+    ) {
+      movingPlatform.velocity.x = -2;
+    } else if (movingPlatform.position.x <= -300) {
+      movingPlatform.movingPlatformValue = false;
+    }
+  });
+
+  //====================DRAWING OBJECTS======================
+  decorativeObjects.forEach((decorativeObject) => {
+    decorativeObject.draw();
+  });
+
+  platforms.forEach((platform) => {
+    platform.draw();
+  });
+
+  winningObject.forEach((winningObject) => {
+    winningObject.draw();
+  });
+
+  movingPlatform.forEach((movingPlatform) => {
+    movingPlatform.update();
+  });
+
+  boulderObject.forEach((boulderObject) => {
+    if (boulderStartFalling === true) {
+      boulderObject.update();
+    }
+  });
+  
+  ```
+  
+  <a name="restartgame"></a>
+## 9. Restart Game
+
+<p>The Restart Game function, restartgame() will be called when the Player invokes the Win/Lose scenarios. All the basic blocks of the game will reset into its original position, allower the Player to have a go at the game again.</p>
+
+```
+function restartGame() {
+  player = new Player();
+
+  platforms = [
+    new Platform({ x: -100, y: 650, image: platformImage }),
+    new Platform({ x: 100, y: 500, image: platformImage2 }),
+    new Platform({ x: 200, y: 400, image: platformImage2 }),
+    new Platform({ x: 300, y: 300, image: platformImage2 }),
+    new Platform({ x: 300, y: 000, image: platformImage2 }),
+    new Platform({ x: 100, y: -100, image: platformImage2 }),
+    ];
+    
+    movingPlatform = [
+    new MovingPlatform({ x: 500, y: 150, image: movingPlatformImage }),
+    new MovingPlatform({ x: 500, y: -550, image: movingPlatformImage }),
+    new MovingPlatform({ x: 500, y: -2350, image: platformImage2 }),
+    ];
+    .
+    .
+    .
+    }
+    
+    ```
